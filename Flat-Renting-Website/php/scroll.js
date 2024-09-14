@@ -1,0 +1,1 @@
+ScrollReveal().reveal('.scroll', {duration: 1300,origin: "bottom", easing: 'ease',reset: true  });

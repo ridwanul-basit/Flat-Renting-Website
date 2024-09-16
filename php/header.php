@@ -1,4 +1,10 @@
-<?php $page = basename($_SERVER["REQUEST_URI"])?>
+<?php $page = basename($_SERVER["REQUEST_URI"]);
+$username = $_SESSION["username"];
+$data = "SELECT * FROM `user` WHERE `user_name`='$username'";
+$query = mysqli_query($con, $data);
+$ownerid = mysqli_fetch_assoc($query);
+
+?>
 <header id="header">
 
             <nav class = "box_nav">
@@ -11,8 +17,8 @@
 
   <div class = "social_1">
             <a target ="_blank" href= "https://facebook.com"><img src="../image/fb.jpg" id ='social' ></a>
-            <a target ="_blank" href= "https://instagram.com"><img src="../image/insta.jpg" id ='social'></a>
             <a target ="_blank" href= "https://whatsapp.com"><img src="../image/whatsapp.jpg" id ='social'></a>
+            <a target ="_blank" href= "profile.php?id=<?= $ownerid["user_id"]?>"><img src="../image/user.webp" id ='social'></a>
   </div>
 
   </header>

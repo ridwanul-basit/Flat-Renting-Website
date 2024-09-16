@@ -1,5 +1,4 @@
 <?php
-
 require_once "database.php";
 
 
@@ -32,11 +31,15 @@ while ($cart = mysqli_fetch_assoc($data)) {
 }
 
 
+if (!empty($flat_ids)) {
+    $flat_ids_str = implode(",", $flat_ids); 
+    $sql = "SELECT * FROM flat WHERE `flat_id` IN ($flat_ids_str) LIMIT $start, $end";
+    $all = mysqli_query($con, $sql);
+} else {
+    $_SESSION['message']="No items in the cart.";
+ 
+}
 
-
-$flat_ids_str = implode(",", $flat_ids); 
-$sql = "SELECT * FROM flat WHERE `flat_id` IN ($flat_ids_str) LIMIT $start, $end";
-$all = mysqli_query($con, $sql);
 
 
 ?>;

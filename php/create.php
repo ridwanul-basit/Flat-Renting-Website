@@ -11,7 +11,7 @@ if (isset(($_POST["Create_account"]))){
     $username=$_POST["name"];
     $fullname=$_POST["fullname"];
     $phone=$_POST["phone"];
-    $mail=$_POST["mail"];
+    $mail=$_POST["email"];
     $address=$_POST["address"];
     $nid=$_POST["nid"];
     $password =$_POST["password"];
@@ -24,7 +24,7 @@ if (isset(($_POST["Create_account"]))){
     
     try{
       $result = mysqli_query($con,$insert);
-      $_SESSION["message"]="Student Created Succesfully";
+      $_SESSION["message"]="Account Created Succesfully";
       header("location:registration.php");
       exit(0);
     }

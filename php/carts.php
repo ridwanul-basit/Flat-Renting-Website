@@ -53,7 +53,8 @@ if(isset($_GET['page-nr'])){
 <div class="container py-5">
     <div class="row mt-4">
 <?php
-
+if(!empty($all)){
+if(mysqli_num_rows($all) > 0) {
 while($row = mysqli_fetch_assoc($all))
 {
 ?>
@@ -76,6 +77,11 @@ while($row = mysqli_fetch_assoc($all))
       </div>
       <?php
  }
+} else {
+
+    echo "<div class='col-md-12 mt-3'><h2>No flats available in your cart.</h2></div>";
+}
+}
 ?>
     </div>
 </div>

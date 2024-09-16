@@ -100,3 +100,29 @@
     position: absolute;
     margin-top: -6px;
  }
+
+
+span{
+
+    color: white;
+    position: relative;
+    top: 10px
+
+ } 
+
+
+.hide{
+display: flex;
+flex-direction: row;
+ }
+
+#labelp{
+   position: absolute;
+   top: -15px;
+}
+
+.login_inputp{
+   color:black;
+   position: relative;
+   top: 10px;
+}

@@ -1,5 +1,6 @@
 <?php 
    session_unset();
+   session_start();
 
 ?>
 
@@ -23,6 +24,8 @@
         <div class="col-lg-6"><li><a href="login.php">Log In</a></li></div>
     </div>
 </header>
+
+<?php include "message.php" ?>
 <div id="banner-sec" >
 <main>
     <section >

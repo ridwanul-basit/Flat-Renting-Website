@@ -17,7 +17,7 @@ else{
 }
 }
 
-if(isset($_GET['id'])){
+if(isset($_GET['id']) && !isset($_POST["edit"])){
     $deleteid= $_GET['id'];
     delete();
 }

@@ -56,7 +56,7 @@ function create(){
     global $ownerid,$name,$area,$size,$bhk,$address,$rent,$image,$img_dir,$status;
 
    
-    $sql = "INSERT INTO `flat` (`owner_id`, `name`,`area`, `size`, `BHK`,`address`,`price`,`image`,`status`) VALUES ('$ownerid','$name','$area','$size', '$bhk','$address','$rent','$image','$status')";
+    $sql = "INSERT INTO `flat` (`owner_id`, `name`,`area`, `size`, `BHK`,`address`,`price`,`image`,`status`,`time`,`date`) VALUES ('$ownerid','$name','$area','$size', '$bhk','$address','$rent','$image','$status',NOW(),NOW())";
 
     if (mysqli_query($con,$sql)){
         move_uploaded_file($_FILES["image"]["tmp_name"],$img_dir);

@@ -47,7 +47,7 @@ hr {
  display: flex;
  flex-direction: row;
  position: relative;
- top: -580px;
+ top: -750px;
  left: 60%;
  gap: 6px;
 }
@@ -60,8 +60,8 @@ hr {
 }
 .options{
     position: relative;
-    top: 60px;
-    right: 40px;
+    top: 10px;
+    right: -250px;
 }
 
 .modal-footer #save{
@@ -79,4 +79,29 @@ hr {
     width: 400px;
     position: absolute;
     top: -20px;
+}
+.photos{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 10px;
+    top: 100px;
+}
+
+.images{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: 450px;
+    gap: 9px;
+    top: 100px;
+}
+
+.display{
+    width: 190px;
+     height: 190px;
+}
+
+.display2{
+    width: 450px;
 }

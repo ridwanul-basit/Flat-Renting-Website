@@ -36,7 +36,7 @@ if (!isset($_SESSION["username"])){
  <div class="message">  
 <?php include "message.php" ?>
 </div> 
-<h1 class="ads">Cart</h1>
+<h1 class="ads">Wishlist</h1>
 
  <?php 
 if(isset($_GET['page-nr'])){
@@ -71,7 +71,7 @@ while($row = mysqli_fetch_assoc($all))
             </div>
              <h2 class="Email">Rent: <?= $row["price"]; ?></h2>
              <a href="description.php?id=<?= $row["flat_id"]; ?>"><button>Description</button></a>
-             <a href="removefromcart.php?id=<?= $row["flat_id"]; ?>"><button >Remove From Cart</button></a>
+             <a href="removefromcart.php?id=<?= $row["flat_id"]; ?>"><button >Remove From Wishlist</button></a>
             </div>
          </div>
       </div>

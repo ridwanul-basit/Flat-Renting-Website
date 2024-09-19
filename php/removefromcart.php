@@ -17,7 +17,7 @@ if ( mysqli_query($con,$sql)){
     exit(0);
 
 } else {
-    $_SESSION['message']="Flat Couldn't Removed From Carts";
+    $_SESSION['error']="Flat Couldn't Removed From Carts";
     header("location:carts.php");
     exit(0);
 }

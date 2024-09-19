@@ -30,7 +30,7 @@ if (isset($_POST["editprofile"])) {
 
         editprofile();
     } else {
-        $_SESSION['message'] = "Wrong Password";
+        $_SESSION['error'] = "Wrong Password";
         header("Location: profile.php?id=$userid");
     }
 }
@@ -57,7 +57,7 @@ function editprofile(){
     
          
      } else {
-        $_SESSION['message']="User Details Not Updated";
+        $_SESSION['error']="User Details Not Updated";
         header("location:profile.php?id=$userid");
         exit(0);
      }
@@ -72,7 +72,7 @@ function editprofile(){
        
             
         } else {
-           $_SESSION['message']="User Details Not Updated";
+           $_SESSION['error']="User Details Not Updated";
            header("location:profile.php?id=$userid");
            exit(0);
         }
@@ -89,12 +89,12 @@ function editprofile(){
                 $sql= "DELETE FROM `user` WHERE `user_id` = '$deleteid'";
     
                 if ( mysqli_query($con,$sql)){
-                    $_SESSION['message']="User Deleted";
+                    $_SESSION['user_delete']="User Deleted";
                     header("location:index.php");
                     exit(0);
     
                 } else {
-                    $_SESSION['message']="User Couldn't Deleted";
+                    $_SESSION['error']="User Couldn't Deleted";
                     header("location:index.php");
                     exit(0);
     }

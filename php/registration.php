@@ -28,45 +28,44 @@ session_start();
         <div class="form">
         <div class = input_box>
     <label for="name" id="label">Username:</label>
-        <input type="name" id="name" name="name" placeholder="enter username" class="login_input" required>
+        <input type="name"  id="name" name="name" placeholder="enter username" autocomplete="new-password" class="login_input" required>
         <br>
         </div>
         <div class = input_box>
     <label for="fullname" id="label">Full Name:</label>
-        <input type="name" id="fullname" name="fullname" placeholder="enter full name" class="login_input" required>
+        <input type="name" id="fullname" name="fullname" placeholder="enter full name" autocomplete="new-password" class="login_input" required>
         <br>
         </div>
         <div class = input_box>
     <label for="phone" id="label">Phone:</label>
-        <input type="text" id="phone" name="phone" placeholder="enter phone" class="login_input" required>
+        <input type="text" id="phone" name="phone" placeholder="enter phone" autocomplete="new-password" class="login_input" required>
         <br>
     </div>
     <div class = input_box>
 <label for="email" id="label">Email:</label>
-    <input type="email" id="email" name="email" placeholder="enter email" class="login_input" required>
+    <input type="email" id="email" name="email" placeholder="enter email" autocomplete="new-password" class="login_input" required>
     <br>
     </div>
         <div class = input_box>
     <label for="address" id="label">Address:</label>
-        <input type="text" id="address" name="address" placeholder="enter address" class="login_input" required>
+        <input type="text" id="address" name="address" placeholder="enter address" autocomplete="new-password" class="login_input" required>
         <br>
         </div>
         <div class = input_box>
     <label for="nid" id="label">NID:</label>
-        <input type="text" id="nid" name="nid" placeholder="enter nid" class="login_input" required>
+        <input type="text" id="nid" name="nid" placeholder="enter nid" autocomplete="new-password" class="login_input" required>
         <br>
         </div>
     <div class="input_box">
     <label for="password" id="label">Password:</label>
-        <input type="password" id="password" name="password" placeholder="enter password" class="login_input" required>
+        <input type="password" id="password" name="password" placeholder="enter password" autocomplete="new-password" class="login_input" required>
     <br>
     </div>
-    <input class="regis_button" type="submit" name="Create_account" value="Create Account" >
+    <button class="regis_button" type="submit" name="Create_account" >Create Account</button>
     <button><a href ="login.php">Return to login page</a></button>
     </div>
     </form>
 
    </div> 
-
 </body>
 </html>

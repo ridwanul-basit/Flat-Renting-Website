@@ -30,7 +30,10 @@ if(isset($_POST["edit"])){
     $bhk=$_POST["bhk"];
     $address=$_POST["address"];
     $rent=$_POST["price"];
-    $image=$_FILES["image"]["name"];
+    $img1= $_FILES['image']['name'][0];
+    $img2= $_FILES['image']['name'][1];
+    $img3= $_FILES['image']['name'][2];
+    $img4= $_FILES['image']['name'][3];
     $img_dir ="../image/".$_FILES["image"]["name"];
     $status= true;
     edit();
@@ -44,28 +47,35 @@ $size=$_POST["size"];
 $bhk=$_POST["bhk"];
 $address=$_POST["address"];
 $rent=$_POST["rent"];
-$image=$_FILES["image"]["name"];
-$img_dir ="../image/".$_FILES["image"]["name"];
+$img1= $_FILES['image']['name'][0];
+$img2= $_FILES['image']['name'][1];
+$img3= $_FILES['image']['name'][2];
+$img4= $_FILES['image']['name'][3];
 $status= true;
+
 create();
 }
 
 
 function create(){
     global $con;
-    global $ownerid,$name,$area,$size,$bhk,$address,$rent,$image,$img_dir,$status;
+    global $ownerid,$name,$area,$size,$bhk,$address,$rent,$img1,$img2,$img3,$img4,$status;
 
    
-    $sql = "INSERT INTO `flat` (`owner_id`, `name`,`area`, `size`, `BHK`,`address`,`price`,`image`,`status`,`time`,`date`) VALUES ('$ownerid','$name','$area','$size', '$bhk','$address','$rent','$image','$status',NOW(),NOW())";
+    $sql = "INSERT INTO `flat` (`owner_id`, `name`,`area`, `size`, `BHK`,`address`,`price`,`image`,`image2`,`image3`,`image4`,`status`,`time`,`date`) VALUES ('$ownerid','$name','$area','$size', '$bhk','$address','$rent','$img1','$img2','$img3','$img4','$status',NOW(),NOW())";
     if (mysqli_query($con,$sql)){
-        move_uploaded_file($_FILES["image"]["tmp_name"],$img_dir);
+        foreach($_FILES['image']['name'] as $key=>$val){
+            $img_dir ="../image/".$_FILES["image"]["name"][$key];
+            move_uploaded_file($_FILES["image"]["tmp_name"][$key],$img_dir);
+        
+        }
         $_SESSION['message']='Add Posted';
         header("Location: post.php");
 
         
     } else {
 
-        $_SESSION['message']='Add Not Posted';
+        $_SESSION['error']='Add Not Posted';
         header("Location: post.php");
     }
 
@@ -73,27 +83,31 @@ function create(){
 
 function edit(){
 global $con;
-global $flatid,$name,$area,$size,$bhk,$address,$rent,$image,$img_dir,$status;
+global $flatid,$name,$area,$size,$bhk,$address,$rent,$img1,$img2,$img3,$img4,$status;
 
 
 
 
 
-if($image != ""){
+if($img1 != ""){
 
 
- $sql= "UPDATE `flat` SET `name`= '$name',`area` = '$area',`size` = '$size', `BHK`='$bhk', `address`= '$address', `price`='$rent', `image`='$image' WHERE `flat_id` = $flatid";
+ $sql= "UPDATE `flat` SET `name`= '$name',`area` = '$area',`size` = '$size', `BHK`='$bhk', `address`= '$address', `price`='$rent', `image`='$img1',`image2`='$img2',`image3`='$img3',`image4`='$img4' WHERE `flat_id` = $flatid";
 
 
  if (mysqli_query($con,$sql)){
-     move_uploaded_file($_FILES["image"]["tmp_name"],$img_dir);
+    foreach($_FILES['image']['name'] as $key=>$val){
+        $img_dir ="../image/".$_FILES["image"]["name"][$key];
+        move_uploaded_file($_FILES["image"]["tmp_name"][$key],$img_dir);
+    
+    }
      $_SESSION['message']="Flat Details Updated";
      header("location:description.php?id=$flatid");
      exit(0);
 
      
  } else {
-    $_SESSION['message']="Flat Details Not Updated";
+    $_SESSION['error']="Flat Details Not Updated";
     header("location:description.php?id=$flatid");
     exit(0);
  }
@@ -107,7 +121,7 @@ if($image != ""){
     exit(0);
      
  } else {
-    $_SESSION['message']="Flat Details Not Updated";
+    $_SESSION['error']="Flat Details Not Updated";
     header("location:description.php?id=$flatid");
     exit(0);
  }
@@ -129,7 +143,7 @@ function delete(){
                 exit(0);
 
             } else {
-                $_SESSION['message']="Flat Add Couldn't Deleted";
+                $_SESSION['error']="Flat Add Couldn't Deleted";
                 header("location:home.php");
                 exit(0);
 }

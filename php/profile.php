@@ -13,8 +13,12 @@ $query = mysqli_query($con, $data);
 $ownerid = mysqli_fetch_assoc($query);
 $ID=$_GET['id'];
 $query1 = "SELECT * FROM user WHERE `user_id`=$ID";
+$query2 = "SELECT * FROM flat WHERE `owner_id`=$ID";
 $data = mysqli_query($con, $query1);
+$data2 =mysqli_query($con, $query2);
 $output = mysqli_fetch_all($data,MYSQLI_ASSOC);
+
+
 }
 ?>
 
@@ -46,15 +50,46 @@ $output = mysqli_fetch_all($data,MYSQLI_ASSOC);
    <h1>Profile Details</h1>
      <hr>
      <img  src="../image/user.webp" id="img" width="150" height="150" alt="">
+     <h2><?= $output[0]["user_name"]?></h2> 
      <h2><?= $output[0]["name"]?> | <?= $output[0]["phone_number"]?></h2>
      <h2><?= $output[0]["mail"]?></h2> 
      <h2><?= $output[0]["address"]?></h2>
      <h2><?= $output[0]["nid"]?></h2>
 </div>
+<div class="photos">
+  <h1>Posts</h1>
+  <hr>
+  <div class="images">
+  <div class="container py-5">
+    <div class="col mt-4">
+<?php
+
+while($row = mysqli_fetch_assoc($data2))
+{
+?>
+      <div class="row-mb-3 mt-2">
+
+          <div class="card mb-2">
+
+              <img src="../image/<?= $row["image"]?>" width="150px" height="150px" alt="">
+              <div class="card-body">
+            <div class="info">
+             <h2 class="title"><?= $row["name"]; ?></h2>
+             <h2 class="Email">Rent: <?= $row["price"]; ?></h2>
+            </div>
+             <a href="description.php?id=<?= $row["flat_id"]; ?>"><button>Description</button></a>
+            </div>
+         </div>
+      </div>
+      <?php
+ }
+?>
+    </div>
+</div>
+  </div>
+</div>
 <div class="buttons">
-<button type="button" class="btn btn-primary" id="appointment" data-toggle="modal">
-<?= $output[0]["user_name"]?>
-</button>
+<a href="logout.php"><button class="btn btn-primary">Log Out</button></a>
    <?php 
    if($ownerid['user_id'] === $output[0]['user_id']) {
     ?>

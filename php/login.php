@@ -20,17 +20,17 @@ session_destroy();
 <body class="body">
    <div class ="login">
     <h1>Login Form</h1>
-    <?php  include "message.php"; ?>
+    <?php  include "msg.php"; ?>
     <form action="access.php" method="POST" autocomplete="off" >
         <div class = input_box>
     <label for="name" id="label">Username:</label>
-        <input type="name" id="name" name="name" placeholder="enter username" class="login_input" required>
+        <input type="name" id="name" name="name" placeholder="enter username" class="login_input"autocomplete="new-password" required>
         <br>
         </div>
     <div class="input_box">
     <label for="password" id="labelp" >Password:</label>
     <div class="hide">
-        <input type="password" id="password" name="password" placeholder="enter password" class="login_inputp" required>
+        <input type="password" id="password" name="password" placeholder="enter password" class="login_inputp" autocomplete="new-password" required>
         <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
    </div>
     <br>

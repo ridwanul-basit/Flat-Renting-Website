@@ -72,9 +72,9 @@ include "message.php";
     <input type="text" id="rent" name="rent" placeholder="enter flat rent" class="login_input" required>
     <br>
     </div>
-    <div class = input_box>
-<label for="image" id="label">Image:</label>
-    <input type="file" id="image" name="image" class="login_input" required>
+    <div class = input_box id="images">
+<label for="image" id="label_image">Upload 4 Images:</label>
+    <input type="file" id="image" name="image[]" multiple class="login_input" required>
     <br>
     </div>
 

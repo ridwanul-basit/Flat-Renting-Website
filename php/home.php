@@ -8,6 +8,10 @@ include "adds.php";
 
 if (!isset($_SESSION["username"])){
     header("location:index.php");
+$username = $_SESSION["username"];
+$data = "SELECT * FROM `user` WHERE `user_name`='$username'";
+$query = mysqli_query($con, $data);
+$ownerid = mysqli_fetch_assoc($query);
 }
 
 
@@ -38,7 +42,7 @@ if (!isset($_SESSION["username"])){
 
 <div class="post">
     <a href='post.php' class='btn btn-info btn-sm'>Create a Post</a>
-    <a href='carts.php' class='btn btn-info btn-sm'>Carts</a>
+    <a href='carts.php' class='btn btn-info btn-sm'>Wishlist</a>
  </div>    
 <div class="message">
 <?php
@@ -77,7 +81,14 @@ while($row = mysqli_fetch_assoc($all))
             </div>
              <h2 class="Email">Rent: <?= $row["price"]; ?></h2>
              <a href="description.php?id=<?= $row["flat_id"]; ?>"><button>Description</button></a>
-             <a href="addtocart.php?id=<?= $row["flat_id"]; ?>"><button >Add to Cart</button></a>
+             <?php  
+if($row['owner_id']!==$ownerid['user_id']){
+
+?>
+             <a href="addtocart.php?id=<?= $row["flat_id"]; ?>"><button >Add to Wishlist</button></a>
+  <?php 
+}
+  ?>
             </div>
          </div>
       </div>

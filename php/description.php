@@ -54,11 +54,25 @@ if(isset($_GET['id'])){
      <h2><?= $output[0]["address"]?></h2>
      <h2><?= $output[0]["price"]?>/=</h2>
 </div>
+<div class="photos">
+  <h1>Photos</h1>
+  <hr>
+  <div class="images">
+   <img onclick="display(this)" class="display" id="image2" src="../image/<?= $output[0]["image2"]?>"  alt="">
+  <img onclick="display(this)" class="display" id="image3" src="../image/<?= $output[0]["image3"]?>"  alt="">
+  <img  onclick="display(this)" class="display"  id="image4" src="../image/<?= $output[0]["image4"]?>"  alt="">
+  </div>
+</div>
+
 <div class="buttons">
+  <?php 
+if($ownerid['user_id'] != $output[0]['owner_id']){
+  ?>
 <button type="button" class="btn btn-primary" id="appointment" data-toggle="modal">
  Set an appointment
 </button>
    <?php 
+}
    if($ownerid['user_id'] === $output[0]['owner_id']) {
     ?>
     <div class="options">
@@ -129,7 +143,7 @@ if(isset($_GET['id'])){
   </div>
 <div class="form-group">
 <label for="image">Image</label>
-    <input type="file" class="form-control-file" id="image" name="image" value="<?= $output[0]["image"]?>" >
+    <input type="file" class="form-control-file" id="image" name="image[]" multiple >
   </div>
   
 
@@ -159,8 +173,7 @@ if(isset($_GET['id'])){
 </html>
 
 <?php include "modal.php" ?>
-
-
+<?php include "display.php" ?>
 
 
 

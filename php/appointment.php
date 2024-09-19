@@ -27,7 +27,7 @@ if (isset(($_POST["save"]))){
     }
 
     catch(mysqli_sql_exception) {
-        $_SESSION["message"]="Appointment Couldn't Created";
+        $_SESSION["error"]="Appointment Couldn't Created";
         header("location:description.php?id=$id");
         exit(0);
     }

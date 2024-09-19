@@ -16,13 +16,13 @@ $insert = "INSERT INTO `cart` (`flat_id`,`time`,`date`) VALUES ('$flatid',NOW(),
 
 try{
   $result = mysqli_query($con,$insert);
-  $_SESSION["message"]="Added to cart Succesfully";
+  $_SESSION["message"]="Added to Wishlist Succesfully";
   header("location:home.php");
 
 }
 
 catch(mysqli_sql_exception) {
-    $_SESSION["message"]="failed to add to cart";
+    $_SESSION["error"]="Already in the Wishlist";
     header("location:home.php");
 
 }

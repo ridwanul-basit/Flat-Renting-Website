@@ -1,3 +1,4 @@
+
 <?php
 // Database connection settings
 $host = "localhost";
@@ -140,5 +141,6 @@ $conn->close();
     <script src="scroll.js"></script>
 </body>
 </html>
+
 
 

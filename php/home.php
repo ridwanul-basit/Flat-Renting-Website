@@ -135,7 +135,10 @@ if(isset($_GET['page-nr'])){
 function getData($sql){
     include("database.php");
     global $ownerid;
+
+=======
     global $pages,$page;
+
     $result=mysqli_query($con, $sql);
     if(!$result){
         die('error in query:'.mysqli_error($con));
@@ -145,8 +148,12 @@ function getData($sql){
         while($row = mysqli_fetch_assoc($result))
         {
         ?>
+
+              <div class="row-mb-3 mt-2">
+=======
         <div class="cards">
               <div class="row-mb-3">
+
         
                   <div class="card mb-2">
         
@@ -155,9 +162,12 @@ function getData($sql){
                     <div class="info">
                      <h2 class="title"><?= $row["name"]; ?> |</h2>
                      <h2 class="title"><?= $row["area"]; ?> |</h2>
+
+                     <h2 class="title"><?= $row["BHK"]; ?></h2>
+=======
                      <h2 class="title"><?= $row["BHK"]; ?> |</h2>
                      <h2 class="title"><?= $row["category"]; ?> |</h2>
-                    </div>
+   </div>
                      <h2 class="Email">Rent: <?= $row["price"]; ?></h2>
                      <a href="description.php?id=<?= $row["flat_id"]; ?>"><button>Description</button></a>
                      <?php  
@@ -171,9 +181,14 @@ function getData($sql){
                     </div>
                  </div>
               </div>
+
+              <?php
+         }}}
+=======
               </div> 
               <?php
          }}
+
         ?>
 
 <div class="page-info">

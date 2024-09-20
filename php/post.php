@@ -72,9 +72,19 @@ include "message.php";
     <input type="text" id="rent" name="rent" placeholder="enter flat rent" class="login_input" required>
     <br>
     </div>
+    <div class = input_box>
+<label for="type" id="label">Flat type:</label>
+    <input type="option" id="rent" name="type" placeholder="select flat type" list="scripts" class="login_input" required>
+     <datalist id="scripts">
+    <option value="Male_Bachelor">
+    <option value="Family" >
+    <option value="Female_Bachelor" >
+</datalist>
+    <br>
+    </div>
     <div class = input_box id="images">
 <label for="image" id="label_image">Upload 4 Images:</label>
-    <input type="file" id="image" name="image[]" multiple class="login_input" required>
+    <input type="file" id="image" name="image[]" multiple accept="image/jpg, image/jpeg, image/webp" class="login_input" required>
     <br>
     </div>
 
@@ -94,6 +104,8 @@ include "message.php";
 <script src="scroll.js"></script>
 </body>
 </html>
+
+<?php include "fileslimit.php" ?>
 
 
 

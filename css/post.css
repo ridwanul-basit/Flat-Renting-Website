@@ -13,7 +13,7 @@
 .registration{
     background: transparent;
     width: 500px;
-    height: 800px;
+    height: 880px;
     position: absolute;
     left: 34%;
     top: 10%;
@@ -74,7 +74,7 @@ hr {
  .regis_button  {
     background-color: black;
     position: absolute;
-    top: 110%;
+    top: 100%;
     left: 80px;
     color:#fff;
     width: 300px;
@@ -94,7 +94,7 @@ form button {
   width: 300px;
   position: absolute;
   left: 80px;
-  top: 600px;
+  top: 700px;
   background-color: black;
   
 }

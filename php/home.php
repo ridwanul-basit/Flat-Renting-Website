@@ -8,6 +8,10 @@ include "adds.php";
 
 if (!isset($_SESSION["username"])){
     header("location:index.php");
+$username = $_SESSION["username"];
+$data = "SELECT * FROM `user` WHERE `user_name`='$username'";
+$query = mysqli_query($con, $data);
+$ownerid = mysqli_fetch_assoc($query);
 }
 
 
@@ -38,7 +42,7 @@ if (!isset($_SESSION["username"])){
 
 <div class="post">
     <a href='post.php' class='btn btn-info btn-sm'>Create a Post</a>
-    <a href='carts.php' class='btn btn-info btn-sm'>Carts</a>
+    <a href='carts.php' class='btn btn-info btn-sm'>Wishlist</a>
  </div>    
 <div class="message">
 <?php
@@ -58,86 +62,13 @@ if(isset($_GET['page-nr'])){
 
 
 <div class="container py-5">
-    <div class="row">
-        <form method="POST" action="home.php">
-           <div class="row"> 
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="area">Choose an area</label>
-                    <select class="form-control" name="area">
-                        <option>Select</option>
-                        <?php
-                        $query = "SELECT  * FROM tbl_area";
-                        $result = mysqli_query($con, $query) or die('Error fetching data');
-                        if (mysqli_num_rows($result) > 0):
-                            while ($row = mysqli_fetch_assoc($result)): ?>
-                                <option value="<?php echo $row['area']; ?>">
-                                    <?php echo $row['area']; ?>
-                                </option>
-                            <?php endwhile;
-                        endif;
-                        ?>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="type">Choose a category</label>
-                    <select class="form-control" name="type">
-                        <option>Select</option>
-                        <?php
-                        $query = "SELECT  * FROM tbl_type";
-                        $result = mysqli_query($con, $query) or die('Error fetching data');
-                        if (mysqli_num_rows($result) > 0):
-                            while ($row = mysqli_fetch_assoc($result)): ?>
-                                <option value="<?php echo $row['type']; ?>">
-                                    <?php echo $row['type']; ?>
-                                </option>
-                            <?php endwhile;
-                        endif;
-                        ?>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-6 d-flex align-items-end">
-                
-                <input type="submit" name="submit" class="btn btn-primary" id="submit" value="Submit">
-            </div>
-        </form>
-    </div>
-</div>
-
-    
-              
-    <?php
-        if (!isset($_POST['submit'])){ 
-        
-          $getQuery="SELECT * From flat";
-          getData($getQuery);
-        }
-        else if(isset($_POST['submit']) && isset($_POST['area']) && isset($_POST['type']) ){
-          $area=mysqli_real_escape_string($con,$_POST['area']);
-          $type=mysqli_real_escape_string($con,$_POST['type']);
-          $getQuery= "SELECT * from flat  where area='$area' AND category='$type'";
-          getData($getQuery);
-        } ?> 
-            </div>
-         </div>
-      </div>
-
-    </div>
-</div>
+    <div class="row mt-4">
 <?php
-function getData($sql){
-    include("database.php");
-    $result=mysqli_query($con, $sql);
-    if(!$result){
-        die('error in query:'.mysqli_error($con));
-    }
-    if(mysqli_num_rows($result)>0){
-        while($row = mysqli_fetch_assoc($result)){
+
+while($row = mysqli_fetch_assoc($all))
+{
 ?>
-        <div class="row-mb-3 mt-2">
+      <div class="row-mb-3 mt-2">
 
           <div class="card mb-2">
 
@@ -150,16 +81,22 @@ function getData($sql){
             </div>
              <h2 class="Email">Rent: <?= $row["price"]; ?></h2>
              <a href="description.php?id=<?= $row["flat_id"]; ?>"><button>Description</button></a>
-             <a href="addtocart.php?id=<?= $row["flat_id"]; ?>"><button >Add to Cart</button></a>
+             <?php  
+if($row['owner_id']!==$ownerid['user_id']){
+
+?>
+             <a href="addtocart.php?id=<?= $row["flat_id"]; ?>"><button >Add to Wishlist</button></a>
+  <?php 
+}
+  ?>
             </div>
-            
-        </div>
+         </div>
       </div>
       <?php
-       }
-
-    }
-}?>
+ }
+?>
+    </div>
+</div>
 
 <div class="page-info">
     <?php

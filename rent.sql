@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2024 at 11:10 PM
+-- Generation Time: Sep 20, 2024 at 02:00 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -66,6 +66,7 @@ CREATE TABLE `flat` (
   `flat_id` int(11) NOT NULL,
   `owner_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `category` varchar(255) NOT NULL,
   `area` varchar(255) DEFAULT NULL,
   `size` varchar(255) DEFAULT NULL,
   `BHK` varchar(255) DEFAULT NULL,
@@ -79,9 +80,77 @@ CREATE TABLE `flat` (
 -- Dumping data for table `flat`
 --
 
-INSERT INTO `flat` (`flat_id`, `owner_id`, `name`, `area`, `size`, `BHK`, `address`, `price`, `image`, `status`) VALUES
-(180, 149, 'LaPula', 'New Market', '2460sqft', '4BHK', 'Dhaka, Bangladesh', '60000', 'flat3.jpg', 1),
-(181, 149, 'Lake House', 'Kajipara', '2300sqft', '2BHK', 'Dhaka,Bangladesh', '24000', 'flat4.jpg', 1);
+INSERT INTO `flat` (`flat_id`, `owner_id`, `name`, `category`, `area`, `size`, `BHK`, `address`, `price`, `image`, `status`) VALUES
+(180, 149, 'LaPula', 'Bachelor', 'Uttara', '2460sqft', '4BHK', 'Dhaka, Bangladesh', '60000', 'flat3.jpg', 1),
+(181, 149, 'Lake House', 'Family', 'Uttara', '2300sqft', '2BHK', 'Dhaka,Bangladesh', '24000', 'flat4.jpg', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_area`
+--
+
+CREATE TABLE `tbl_area` (
+  `area` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_area`
+--
+
+INSERT INTO `tbl_area` (`area`) VALUES
+('Abdullahpur'),
+('Adabor'),
+('Aftab Nagar'),
+('Agargaon'),
+('Badda'),
+('Banani'),
+('Banasree'),
+('Baridhara'),
+('Bashundhara'),
+('Bawnia'),
+('Beraid'),
+('Bochila'),
+('Cantonment area'),
+('Dakshinkhan'),
+('Farmgate'),
+('Gabtali'),
+('Gulshan'),
+('Kafrul'),
+('Kazipara'),
+('Khilgaon'),
+('Khilkhet'),
+('Mirpur'),
+('Mohakhali'),
+('Mohammadpur'),
+('Niketan'),
+('Pallabi'),
+('Rampura'),
+('Satarkul'),
+('Shahjadpur'),
+('Sher-e-Bangla Nagar'),
+('Tejgaon'),
+('Uttara'),
+('Uttarkhan'),
+('Vatara');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_type`
+--
+
+CREATE TABLE `tbl_type` (
+  `type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_type`
+--
+
+INSERT INTO `tbl_type` (`type`) VALUES
+('Bachelor'),
+('Family');
 
 -- --------------------------------------------------------
 
@@ -113,83 +182,22 @@ INSERT INTO `user` (`user_id`, `user_name`, `name`, `phone_number`, `mail`, `add
 --
 
 --
--- Indexes for table `appointment`
---
-ALTER TABLE `appointment`
-  ADD PRIMARY KEY (`renter_id`),
-  ADD KEY `flat_id` (`flat_id`),
-  ADD KEY `appointment_ibfk_1` (`owner_id`);
-
---
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`cart_id`),
-  ADD UNIQUE KEY `UC_cart` (`flat_id`);
-
---
 -- Indexes for table `flat`
 --
 ALTER TABLE `flat`
-  ADD PRIMARY KEY (`flat_id`),
-  ADD KEY `flat_ibfk_1` (`owner_id`);
+  ADD PRIMARY KEY (`flat_id`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `tbl_area`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+ALTER TABLE `tbl_area`
+  ADD PRIMARY KEY (`area`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indexes for table `tbl_type`
 --
-
---
--- AUTO_INCREMENT for table `appointment`
---
-ALTER TABLE `appointment`
-  MODIFY `renter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
-
---
--- AUTO_INCREMENT for table `cart`
---
-ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT for table `flat`
---
-ALTER TABLE `flat`
-  MODIFY `flat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `appointment`
---
-ALTER TABLE `appointment`
-  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`flat_id`) REFERENCES `flat` (`flat_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`flat_id`) REFERENCES `flat` (`flat_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `flat`
---
-ALTER TABLE `flat`
-  ADD CONSTRAINT `flat_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tbl_type`
+  ADD PRIMARY KEY (`type`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

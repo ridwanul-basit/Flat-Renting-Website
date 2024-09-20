@@ -62,41 +62,119 @@ if(isset($_GET['page-nr'])){
 
 
 <div class="container py-5">
-    <div class="row mt-4">
-<?php
-
-while($row = mysqli_fetch_assoc($all))
-{
-?>
-      <div class="row-mb-3 mt-2">
-
-          <div class="card mb-2">
-
-              <img src="../image/<?= $row["image"]?>" width="150px" height="150px" alt="">
-              <div class="card-body">
-            <div class="info">
-             <h2 class="title"><?= $row["name"]; ?> |</h2>
-             <h2 class="title"><?= $row["area"]; ?> |</h2>
-             <h2 class="title"><?= $row["BHK"]; ?></h2>
+    <div class="row">
+        <form  class="search" method="POST" action="home.php">
+           <div class="row"> 
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="area">Choose an area</label>
+                    <select class="form-control" name="area">
+                        <option>Select</option>
+                        <?php
+                        $query = "SELECT  * FROM tbl_area";
+                        $result = mysqli_query($con, $query) or die('Error fetching data');
+                        if (mysqli_num_rows($result) > 0):
+                            while ($row = mysqli_fetch_assoc($result)): ?>
+                                <option value="<?php echo $row['area']; ?>">
+                                    <?php echo $row['area']; ?>
+                                </option>
+                            <?php endwhile;
+                        endif;
+                        ?>
+                    </select>
+                </div>
             </div>
-             <h2 class="Email">Rent: <?= $row["price"]; ?></h2>
-             <a href="description.php?id=<?= $row["flat_id"]; ?>"><button>Description</button></a>
-             <?php  
-if($row['owner_id']!==$ownerid['user_id']){
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="type">Choose a category</label>
+                    <select class="form-control" name="type">
+                        <option>Select</option>
+                        <?php
+                        $query = "SELECT  * FROM tbl_type";
+                        $result = mysqli_query($con, $query) or die('Error fetching data');
+                        if (mysqli_num_rows($result) > 0):
+                            while ($row = mysqli_fetch_assoc($result)): ?>
+                                <option value="<?php echo $row['type']; ?>">
+                                    <?php echo $row['type']; ?>
+                                </option>
+                            <?php endwhile;
+                        endif;
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex align-items-end">
+                
+                <input type="submit" name="submit" class="btn btn-primary" id="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
 
-?>
-             <a href="addtocart.php?id=<?= $row["flat_id"]; ?>"><button >Add to Wishlist</button></a>
-  <?php 
-}
-  ?>
+    
+              
+    <?php
+        if (!isset($_POST['submit'])){ 
+        
+          $getQuery="SELECT * From flat";
+          getData($getQuery);
+        }
+        else if(isset($_POST['submit']) && isset($_POST['area']) && isset($_POST['type']) ){
+          $area=mysqli_real_escape_string($con,$_POST['area']);
+          $type=mysqli_real_escape_string($con,$_POST['type']);
+          $getQuery= "SELECT * from flat  where area='$area' AND category='$type'";
+          getData($getQuery);
+        } ?> 
             </div>
          </div>
       </div>
-      <?php
- }
-?>
+
     </div>
 </div>
+<?php
+function getData($sql){
+    include("database.php");
+    global $ownerid;
+    global $pages,$page;
+    $result=mysqli_query($con, $sql);
+    if(!$result){
+        die('error in query:'.mysqli_error($con));
+    }
+    if(mysqli_num_rows($result)>0){
+
+        while($row = mysqli_fetch_assoc($result))
+        {
+        ?>
+        <div class="cards">
+              <div class="row-mb-3">
+        
+                  <div class="card mb-2">
+        
+                      <img src="../image/<?= $row["image"]?>" width="150px" height="150px" alt="">
+                      <div class="card-body">
+                    <div class="info">
+                     <h2 class="title"><?= $row["name"]; ?> |</h2>
+                     <h2 class="title"><?= $row["area"]; ?> |</h2>
+                     <h2 class="title"><?= $row["BHK"]; ?> |</h2>
+                     <h2 class="title"><?= $row["category"]; ?> |</h2>
+                    </div>
+                     <h2 class="Email">Rent: <?= $row["price"]; ?></h2>
+                     <a href="description.php?id=<?= $row["flat_id"]; ?>"><button>Description</button></a>
+                     <?php  
+        if($row['owner_id']!==$ownerid['user_id']){
+        
+        ?>
+                     <a href="addtocart.php?id=<?= $row["flat_id"]; ?>"><button >Add to Wishlist</button></a>
+          <?php 
+        }
+          ?>
+                    </div>
+                 </div>
+              </div>
+              </div> 
+              <?php
+         }}
+        ?>
 
 <div class="page-info">
     <?php
@@ -169,8 +247,9 @@ else{
 </div>
 
 </div>
-
-
+<?php
+}
+?>
 <div class="scroll">
     <?php include "footer.php" ?>
 </div>
@@ -180,5 +259,3 @@ else{
 <script src="scroll.js"></script>
 </body>
 </html>
-
-

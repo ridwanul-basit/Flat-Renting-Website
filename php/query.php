@@ -64,7 +64,7 @@ function create(){
     global $ownerid,$name,$area,$size,$bhk,$address,$rent,$img1,$img2,$img3,$img4,$status,$type;
 
    
-    $sql = "INSERT INTO `flat` (`owner_id`, `name`,`area`, `size`, `BHK`,`address`,`price`,`type`,`image`,`image2`,`image3`,`image4`,`status`,`time`,`date`) VALUES ('$ownerid','$name','$area','$size', '$bhk','$address','$rent','$type','$img1','$img2','$img3','$img4','$status',NOW(),NOW())";
+    $sql = "INSERT INTO `flat` (`owner_id`, `name`,`area`, `size`, `BHK`,`address`,`price`,`category`,`image`,`image2`,`image3`,`image4`,`status`,`time`,`date`) VALUES ('$ownerid','$name','$area','$size', '$bhk','$address','$rent','$type','$img1','$img2','$img3','$img4','$status',NOW(),NOW())";
     if (mysqli_query($con,$sql)){
         foreach($_FILES['image']['name'] as $key=>$val){
             $img_dir ="../image/".$_FILES["image"]["name"][$key];
@@ -94,7 +94,7 @@ global $flatid,$name,$area,$size,$bhk,$address,$rent,$img1,$img2,$img3,$img4,$st
 if($img1 != ""){
 
 
- $sql= "UPDATE `flat` SET `name`= '$name',`area` = '$area',`size` = '$size', `BHK`='$bhk', `address`= '$address', `type`= '$type',`price`='$rent', `image`='$img1',`image2`='$img2',`image3`='$img3',`image4`='$img4' WHERE `flat_id` = $flatid";
+ $sql= "UPDATE `flat` SET `name`= '$name',`area` = '$area',`size` = '$size', `BHK`='$bhk', `address`= '$address', `category`= '$type',`price`='$rent', `image`='$img1',`image2`='$img2',`image3`='$img3',`image4`='$img4' WHERE `flat_id` = $flatid";
 
 
  if (mysqli_query($con,$sql)){
@@ -115,7 +115,7 @@ if($img1 != ""){
  }
 }
  else{
-    $sql= "UPDATE `flat` SET `name`= '$name',`area` = '$area',`size` = '$size', `BHK`='$bhk', `type`= '$type',`address`= '$address', `price`='$rent'  WHERE `flat_id` = $flatid";
+    $sql= "UPDATE `flat` SET `name`= '$name',`area` = '$area',`size` = '$size', `BHK`='$bhk', `category`= '$type',`address`= '$address', `price`='$rent'  WHERE `flat_id` = $flatid";
 
  if (mysqli_query($con,$sql)){
     $_SESSION['message']="Flat Details Updated";

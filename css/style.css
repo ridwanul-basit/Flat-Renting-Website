@@ -150,6 +150,24 @@ a{
 
 
 
+label{
+    width: 200px;
+    height: 30px;
+    background-color: transparent;
+    backdrop-filter: blur(7px);
+    color: white;
+}
+.search{
+    position: relative;
+    top: -150px;
+}
+
+
+.cards{
+    position: relative;
+    top: -40px;
+}
+
 
 
 

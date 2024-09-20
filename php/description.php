@@ -51,7 +51,7 @@ if(isset($_GET['id'])){
      <img  src="../image/<?= $output[0]["image"]?>" id="img" width="230" height="300" alt="">
      <h2><?= $output[0]["name"]?> | <?= $output[0]["area"]?></h2>
      <h2><?= $output[0]["size"]?> | <?= $output[0]["BHK"]?></h2>
-     <h2><?= $output[0]["type"]?></h2>
+     <h2><?= $output[0]["category"]?></h2>
      <h2><?= $output[0]["address"]?></h2>
      <h2><?= $output[0]["price"]?>/=</h2>
 </div>
@@ -144,7 +144,7 @@ if($ownerid['user_id'] != $output[0]['owner_id']){
   </div>
   <div class="form-group">
     <label for="type">Type</label>
-    <input type="option" class="form-control" name="type" list="scripts" value="<?= $output[0]["type"]?>">
+    <input type="option" class="form-control" name="type" list="scripts" value="<?= $output[0]["category"]?>">
     <datalist id="scripts">
     <option value="Male_Bachelor">
     <option value="Family" >

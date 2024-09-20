@@ -1,3 +1,4 @@
+
 <?php
 // Database connection settings
 $host = "localhost";
@@ -12,7 +13,8 @@ $conn = new mysqli($host, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
+session_start();
+require_once "database.php";
 // Initialize a variable to hold the success message
 $successMessage = "";
 
@@ -47,10 +49,13 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
     <title>Contact Us</title>
     <style>
         body {
-            background-image: url('path/to/your/background-image.jpg'); /* Replace with your image path */
+            background-image: url('../image/bg3.jpg'); /* Replace with your image path */
             background-size: cover;
             display: flex;
             justify-content: center;
@@ -63,9 +68,13 @@ $conn->close();
         .contact-form {
             background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
             padding: 20px;
+            margin: 70px;
             border-radius: 8px;
             width: 400px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        label{
+            color: black;
         }
 
         h2 {
@@ -102,11 +111,12 @@ $conn->close();
     </style>
 </head>
 <body>
+    <?php include "header.php" ?>
     <div class="contact-form">
         <h2>Contact Us</h2>
 
         <!-- Contact Form -->
-        <form action="contact.php" method="POST">
+        <form action="contact.php" method="POST" autocomplete="off">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
 
@@ -124,5 +134,13 @@ $conn->close();
             <p class="success-message"><?php echo $successMessage; ?></p>
         <?php } ?>
     </div>
+
+    <?php include "footer.php" ?>
+
+
+    <script src="scroll.js"></script>
 </body>
 </html>
+
+
+

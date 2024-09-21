@@ -1,0 +1,60 @@
+header{
+    background-color: #24a19c;
+    padding: 0% 1%;
+}
+header h1{color: white;text-align: center;}
+header li{display: block;}
+header li a{text-decoration: none;
+    color: white;
+    display: block;
+    text-align: end;
+    margin: 1rem;
+    font-size: 1.2rem;
+
+}
+header li a:hover{text-decoration: underline;}
+#banner-sec{
+    background-image: url("../image/pexels-rahulp9800-2834211.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.banner-con{
+    padding: 50px 10px;
+    text-align: center;
+}
+.banner-con h1{width: 60%;margin: 195px auto;font-size: 3rem;background-color: rgba(255,255,0,.884);
+    border-radius: 5px;padding: 10px;}
+    .banner-con p{width: 600px;margin: 25px auto;background-color: rgba(0,124,0);color: white;padding: 10px;font-size: 1.2rem;}
+/* cards */
+    #menu{padding: 1%;} 
+.card-bdy{text-align: center;}
+.item-dsc{background: rgb(165,164,164);}
+.it-name{background:rgba(0,124,0) ; color: white;padding: 10px;}
+.item-dsc > p{font-size: 1rem;padding: 10px;font-weight: bold;}
+.card{transform: 0.4s;padding:1%}
+.card:hover{transform: scale(1.1);}
+footer{padding:1%;color:white;background: #060930;}
+/* footer */
+footer p{line-height: 12px;font-size: 0.8rem;text-align: center;}
+.social-menu{text-align: center;}
+.icon-style{color:white;width:32px;height:32px;line-height: 32px;border-radius: 50%;
+border:1px solid white;margin:0 10px;transition: 0.4s;text-align: center;}
+.icon-style:hover{background-color: grey;transform: 1.2;}
+
+.buy-now {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #24a19c; /* Matching header color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.buy-now:hover {
+    background-color: #1e7a6a; /* Darker shade for hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+}
